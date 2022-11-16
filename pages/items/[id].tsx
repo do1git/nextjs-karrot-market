@@ -9,18 +9,18 @@ const ItemDetail: NextPage = () => {
 
         <div className="flex my-1 py-3 border-b">
           <div className="h-10  w-10 bg-slate-500 rounded-full" />
-          <div className="flex flex-col justify-center items-start ml-2">
-            <p className="text-sm font-medium text-gray-700">Steve Jebs</p>
+          <div className="flex flex-col justify-center items-start ml-2 cursor-pointer">
+            <p className="text-sm font-medium text-gray-700 ">Steve Jebs</p>
             <p className="text-xs font-medium text-gray-500">
               View profile &rarr;
             </p>
           </div>
         </div>
 
-        <div className="py-4">
+        <div className="py-4 mt-5">
           <h1 className="text-3xl font-bold text-gray-900">Galaxy S50</h1>
-          <p>$140</p>
-          <p>
+          <span className="text-3xl block mt-3 text-gray-900">$140</span>
+          <p className="text-base my-6 text-gray-700">
             My money&apos;s in that office, right? If she start giving me some
             bullshit about it ain&apos;t there, and we got to go someplace else
             and get it, I&apos;m gonna shoot you in the head then and there.
@@ -31,9 +31,11 @@ const ItemDetail: NextPage = () => {
             motherfucker to get shot. You understand?
           </p>
 
-          <div className="flex items-center justify-between">
-            <button>Talk to seller</button>
-            <button className="">
+          <div className="flex items-center justify-between space-x-4">
+            <button className="flex-1 bg-orange-500 text-white py-3 rounded-md shadow-sm font-md focus:ring-orange-500 focus:ring-offset-2 focus:ring-2 hover:bg-orange-600">
+              Talk to seller
+            </button>
+            <button className="flex items-center justify-center">
               <svg
                 className="h-6 w-6 "
                 xmlns="http://www.w3.org/2000/svg"
@@ -54,14 +56,14 @@ const ItemDetail: NextPage = () => {
         </div>
       </div>
 
-      <div>
-        <h2>Similar items</h2>
-        <div>
+      <div className="mt-4">
+        <h2 className="text-2xl font-bold my-1">Similar items</h2>
+        <div className="mt-6 grid grid-cols-2 gap-4">
           {[1, 2, 3, 4, 5, 6].map((_, i) => (
-            <div key={i}>
-              <div />
-              <h3>Galaxy S60</h3>
-              <p>$6</p>
+            <div key={i} className="mb-2">
+              <div className="h-56 w-full bg-slate-400" />
+              <h3 className="text-gray-700 mt-2">Galaxy S60</h3>
+              <p className="text-bold text-sm">$6</p>
             </div>
           ))}
         </div>
