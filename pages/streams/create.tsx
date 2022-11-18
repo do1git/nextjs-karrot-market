@@ -1,6 +1,6 @@
-import type { NextPage } from "next";
+import { NextPage } from "next";
 
-const Upload: NextPage = () => {
+const Create: NextPage = () => {
   return (
     <div className="px-4 py-16 space-y-6">
       {/* upload */}
@@ -85,10 +85,10 @@ const Upload: NextPage = () => {
       </div>
 
       <button className="mt-6 w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 border border-y-transparent rounded-md shadow-sm text-sm font-medium focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none">
-        Upload product
+        Go live
       </button>
     </div>
   );
 };
 
-export default Upload;
+export default Create;
