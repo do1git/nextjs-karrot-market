@@ -1,12 +1,15 @@
 import type { NextPage } from "next";
+import Link from "next/link";
+import Button from "../../components/button";
+import FloatingButton from "../../components/floating-button";
 import Layout from "../../components/layout";
 
 const Community: NextPage = () => {
   return (
     <Layout title="동네생활" hasTabBar>
-      <div className="px-4 space-y-8">
+      <div className="px-4 space-y-6">
         {[1, 2, 3, 4, 5, 6].map((_, i) => (
-          <div key={i}>
+          <Link key={i} href={`/community/${i}`} className="block">
             <span className=" bg-gray-200 rounded-lg py-1 px-2">동네질문</span>
             <span className="block text-gray-800 mt-2">
               <span className="text-orange-500">Q.</span> What is the best mandu
@@ -52,10 +55,10 @@ const Community: NextPage = () => {
                 <span>답변 1</span>
               </span>
             </div>
-          </div>
+          </Link>
         ))}
 
-        <button className="fixed bg-orange-500 hover:bg-orange-600 cursor-pointer transition-colors text-white w-10 h-10 bottom-24 right-10 flex justify-center items-center rounded-full shadow-md">
+        <FloatingButton href="/community/write">
           <svg
             className="w-6 h-6"
             fill="none"
@@ -70,7 +73,7 @@ const Community: NextPage = () => {
               d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
             ></path>
           </svg>
-        </button>
+        </FloatingButton>
       </div>
     </Layout>
   );

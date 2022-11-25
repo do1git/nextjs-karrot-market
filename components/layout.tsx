@@ -36,14 +36,19 @@ export default function Layout({
       </div>
 
       <div
-        className={cls("pt-16", "w-full", "max-w-xl", hasTabBar ? "pb-24" : "")}
+        className={cls(
+          "pt-16",
+          "w-full",
+          "max-w-xl, px-4",
+          hasTabBar ? "pb-24" : ""
+        )}
       >
         {children}
       </div>
 
       {/* tab bar */}
       {hasTabBar ? (
-        <nav className=" bg-white text-gray-800 border-black border-t-2 fixed bottom-0 pb-2 pt-3 flex justify-around max-w-xl w-full">
+        <nav className=" bg-white text-gray-800 border-gray-400 border-t-[1.3px] fixed bottom-0 pb-2 pt-3 flex justify-around max-w-xl w-full">
           <Link href="/">
             <div className="flex flex-col items-center space-y-2">
               <svg
@@ -102,7 +107,7 @@ export default function Layout({
               <span>채팅</span>
             </div>
           </Link>
-          <Link href="/streams">
+          <Link href="/live">
             <div className="flex flex-col items-center space-y-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
