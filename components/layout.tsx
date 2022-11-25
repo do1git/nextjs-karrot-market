@@ -50,7 +50,14 @@ export default function Layout({
       {hasTabBar ? (
         <nav className=" bg-white text-gray-800 border-gray-400 border-t-[1.3px] fixed bottom-0 pb-2 pt-3 flex justify-around max-w-xl w-full">
           <Link href="/">
-            <div className="flex flex-col items-center space-y-2">
+            <div
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -70,7 +77,14 @@ export default function Layout({
           </Link>
 
           <Link href="/community">
-            <div className="flex flex-col items-center space-y-2">
+            <div
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/community"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -89,7 +103,14 @@ export default function Layout({
             </div>
           </Link>
           <Link href="/chats">
-            <div className="flex flex-col items-center space-y-2">
+            <div
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/chats"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -108,7 +129,14 @@ export default function Layout({
             </div>
           </Link>
           <Link href="/live">
-            <div className="flex flex-col items-center space-y-2">
+            <div
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/live"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -126,7 +154,14 @@ export default function Layout({
             </div>
           </Link>
           <Link href="/profile">
-            <div className="flex flex-col items-center space-y-2">
+            <div
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/profile"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

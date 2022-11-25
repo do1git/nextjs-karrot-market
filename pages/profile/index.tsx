@@ -5,7 +5,6 @@ import Layout from "../../components/layout";
 const Profile: NextPage = () => {
   return (
     <Layout hasTabBar title="나의 당근">
-      {" "}
       <div className="flex justify-start space-x-4">
         <div className="w-16 h-16 bg-slate-500 rounded-full" />
         <div className="flex flex-col justify-center">
