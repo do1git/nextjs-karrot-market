@@ -1,10 +1,44 @@
 import { useState } from "react";
-import { cls } from "../libs/utils";
+import { useForm } from "react-hook-form";
+import { cls } from "../libs/client/utils";
+import Input from "../components/input";
+import Button from "../components/button";
+import useMutation from "../libs/client/useMutation";
 
+interface EnterForm {
+  email?: string;
+  phone?: string;
+}
 export default function Enter() {
+  const [enter, { loading, data, error }] = useMutation("/api/users/enter");
+  const [submitting, setSubmitting] = useState(false);
+  const { register, watch, handleSubmit, reset } = useForm<EnterForm>();
   const [method, setMethod] = useState<"email" | "phone">("email");
-  const onEmailClick = () => setMethod("email");
-  const onPhoneClick = () => setMethod("phone");
+  const onEmailClick = () => {
+    reset();
+    setMethod("email");
+  };
+  const onPhoneClick = () => {
+    reset();
+    setMethod("phone");
+  };
+
+  const onValid = (validFormData: EnterForm) => {
+    enter(validFormData);
+    // setSubmitting(true);
+    // console.log(data);
+    // fetch("/api/users/enter", {
+    //   method: "POST",
+    //   body: JSON.stringify(data),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // }).then(() => {
+    //   setSubmitting(false);
+    // });
+  };
+  console.log(loading, data, error);
+
   return (
     <div className="mt-16 px-4">
       <h3 className="text-3xl font-bold text-center">Enter to Carrot</h3>
@@ -36,45 +70,41 @@ export default function Enter() {
             </button>
           </div>
         </div>
-        <form className="flex flex-col mt-8">
-          <label className="text-sm font-medium text-gray-700" htmlFor="input">
-            {method === "email" ? "Email address" : null}
-            {method === "phone" ? "Phone number" : null}
-          </label>
-          <div className="mt-1">
+        <form onSubmit={handleSubmit(onValid)} className="flex flex-col mt-8">
+          <div className="my-1">
             {method === "email" ? (
-              <input
-                id="input"
-                type="email"
+              <Input
+                register={register("email", { required: true })}
+                name="email"
+                label="Email address"
+                kind="email"
                 required
-                className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
               />
             ) : null}
             {method === "phone" ? (
-              <div className="flex rounded-md shadow-sm">
-                <span className="flex items-center justify-center text-sm px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 select-none">
-                  +82
-                </span>
-                <input
-                  id="input"
-                  type="number"
-                  required
-                  className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-r-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                />
-              </div>
+              <Input
+                register={register("phone", { required: true })}
+                name="phone"
+                label="Phone number"
+                kind="phone"
+                required
+              />
             ) : null}
           </div>
-          <button className="mt-6 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 border border-y-transparent rounded-md shadow-sm text-sm font-medium focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none">
-            {method === "email" ? "Get login link" : null}
-            {method === "phone" ? "Get one-time password" : null}
-          </button>
+
+          {method === "email" ? (
+            <Button text={submitting ? "Loading" : "Get login link"} />
+          ) : null}
+          {method === "phone" ? (
+            <Button text={submitting ? "Loading" : "Get one-time Pw"} />
+          ) : null}
         </form>
 
         <div className="mt-8">
           <div className="relative">
             <div className="absolute w-full border-t border-gray-300" />
             <div className="relative -top-3 text-center">
-              <span className="bg-white px-2 text-sm text-gray-500">
+              <span className="bg-white px-2 text-sm rounded-md text-gray-500">
                 Or enter with
               </span>
             </div>

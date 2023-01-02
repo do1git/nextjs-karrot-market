@@ -1,9 +1,13 @@
+import type { UseFormRegisterReturn } from "react-hook-form";
+
 interface IInput {
   name: string;
   label: string;
   kind?: "text" | "phone" | "price" | "email";
   placeholder?: string;
-  [key: string]: any;
+  register: UseFormRegisterReturn;
+  required: boolean;
+  // [key: string]: any;
 }
 
 export default function Input({
@@ -11,8 +15,10 @@ export default function Input({
   label,
   placeholder,
   kind = "text",
-  ...rest
-}: IInput) {
+  register,
+  required,
+}: // ...rest
+IInput) {
   return (
     <div className="space-y-1">
       <label htmlFor={name} className="text-sm font-medium text-gray-700">
@@ -23,7 +29,9 @@ export default function Input({
         <input
           id={name}
           type="text"
-          {...rest}
+          // {...rest}
+          required={required}
+          {...register}
           placeholder={placeholder}
           className="w-full rounded-md text-gray-400 border-gray-300 focus:border-orange-500 appearance-none focus:ring-2 focus:ring-orange-500"
         />
@@ -37,6 +45,9 @@ export default function Input({
           <input
             id={name}
             type="text"
+            // {...rest}
+            required={required}
+            {...register}
             placeholder={placeholder ? placeholder : "0.00"}
             className="px-7 w-full rounded-md text-gray-400 border-gray-300 focus:border-orange-500 appearance-none focus:ring-2 focus:ring-orange-500"
           />
@@ -54,7 +65,9 @@ export default function Input({
           <input
             id={name}
             type="number"
-            required
+            // {...rest}
+            required={required}
+            {...register}
             className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-r-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
           />
         </div>
@@ -64,7 +77,9 @@ export default function Input({
         <input
           id={name}
           type="email"
-          required
+          // {...rest}
+          required={required}
+          {...register}
           className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
         />
       ) : null}
